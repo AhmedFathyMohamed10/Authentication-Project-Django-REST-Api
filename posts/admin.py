@@ -4,6 +4,8 @@ from .models import Post
 
 class PostAdmin(admin.ModelAdmin):
     list_display = ('id', 'title', 'author')
-    search_fields = ('title', 'author')
+    search_fields = ('title__icontains', 'content__icontains', 'author__username')
+    list_filter = ('author', 'created_at')
+
 
 admin.site.register(Post, PostAdmin)
