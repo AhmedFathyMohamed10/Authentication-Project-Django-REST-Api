@@ -65,3 +65,9 @@ class DeletePostAPIView(APIView):
         else:
             post.delete()
             return Response({"message": "Post deleted successfully"}, status=status.HTTP_204_NO_CONTENT)
+        
+
+
+
+
+

@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     
     'authentications',
     'posts',
+    'comments'
 
 ]
 
