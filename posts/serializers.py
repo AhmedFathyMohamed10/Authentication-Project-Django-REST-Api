@@ -6,13 +6,17 @@ from comments.serializers import CommentSerializer
 
 class PostSerializer(serializers.ModelSerializer):
     author = serializers.ReadOnlyField(source='author.username')
-    count_comments = serializers.ReadOnlyField()
+    count_comments = serializers.SerializerMethodField()
     comments = serializers.SerializerMethodField()
 
     def get_comments(self, obj):
         comments = Comment.objects.filter(post=obj)
         serializer = CommentSerializer(comments, many=True)
         return serializer.data
+
+    def get_count_comments(self, obj):
+        count = Comment.objects.filter(post=obj).count()
+        return f"{count} comments found" if count > 0 else "0 comments found"
 
 
     class Meta:
